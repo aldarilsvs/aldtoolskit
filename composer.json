@@ -7,7 +7,7 @@
         "psr-4": {
             "aldarilsvs\\aldtoolskit\\": "src/",
             "aldarilsvs\\": "src/",
-            "aldarilsvs\\testb\\": "src/testb/"
+            "aldarilsvs\\testb\\": "src/"
         }
     }
 }
