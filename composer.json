@@ -5,8 +5,8 @@
     "license" : "MIT",
     "autoload" : {
         "psr-4": {
-            "aldarilsvs\\aldtoolskit\\": "src/*",
-            "" : "src/"
+            "aldarilsvs\\aldtoolskit\\": "src/",
+            "aldaril": "src/"
         }
     }
 }
