@@ -6,7 +6,8 @@
     "autoload" : {
         "psr-4": {
             "aldarilsvs\\aldtoolskit\\": "src/",
-            "aldarilsvs\\": "src/"
+            "aldarilsvs\\": "src/",
+            "aldarilsvs\\testb\\": "src/testb/"
         }
     }
 }
