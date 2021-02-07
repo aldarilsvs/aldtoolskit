@@ -1,12 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-namespace aldarilsvs\aldkit;
+namespace aldarilsvs\aldtoolskit;
 
 /**
  * View message with detailed debug information
@@ -36,12 +30,11 @@ namespace aldarilsvs\aldkit;
  * 
  * @author aldaril
  */
+
 class aldViewDebugMessage {
     
     static private $_flViewDebugInfo  = false;
     static private $_flViewDebugStack = false;
-    
-    // private function
     
     // public function
     static public function setOnViewDebugMessage()
@@ -87,5 +80,5 @@ class aldViewDebugMessage {
             debug_print_backtrace ();
     }
     
-    
+    // end class
 }

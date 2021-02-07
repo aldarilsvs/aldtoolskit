@@ -1,10 +1,6 @@
 <?php
 
-/*
- * Trait define overloading methods
- */
-
-namespace aldarilsvs\aldkit;
+namespace aldarilsvs\aldtoolskit;
 
 /**
  * Description of Ald_Overloading
@@ -202,4 +198,5 @@ trait aldOverloading
         $obj->_getViewOverloadingUnknownMethod($name, $args);
     }
     
+    // end trait
 }
