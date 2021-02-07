@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace aldarilsvs\aldtoolskit;
+namespace aldarilsvs\aldkit;
 
 /**
  * View message with detailed debug information

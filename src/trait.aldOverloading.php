@@ -4,7 +4,7 @@
  * Trait define overloading methods
  */
 
-namespace aldarilsvs\aldtoolskit;
+namespace aldarilsvs\aldkit;
 
 /**
  * Description of Ald_Overloading
