@@ -7,6 +7,6 @@
         "psr-4": {
             "aldarilsvs\\aldtoolskit\\": "src/"
         },
-        "classmap": ["src/abc/class.*.php"]
+        "classmap": ["src/abc/*.php"]
     }
 }
