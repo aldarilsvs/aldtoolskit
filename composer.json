@@ -5,7 +5,8 @@
     "license" : "MIT",
     "autoload" : {
         "psr-4": {
-            "aldarilsvs\\aldkit\\": "src/"
+            "aldarilsvs\\aldkit\\": "src/",
+            "classmap": ["src/abc/class.abc.php"]
         }
     }
 }
