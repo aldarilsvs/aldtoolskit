@@ -189,7 +189,50 @@ trait aldOverloading
     
     public function __call ( string $name, array $args )
     {
+        $classVars = get_class_vars(get_class($this));
+        
+        if( strncmp( 'get', $name, 3 ) == 0 )
+        {
+            $searchVar = lcfirst( substr( $name, 3 ) );
+            
+            if( array_key_exists($searchVar,$classVars) )
+            {
+                
+                $o = new \ReflectionProperty(get_class($this), $searchVar);
+                
+                if( $o->isPublic() )
+                    return $classVars[$searchVar];
+            }
+            else
+                $this->_getViewOverloadingUnknownMethod( $name,$args );
+            
+        }
+        elseif( strncmp( 'set', $name, 3 ) == 0 )
+        {
+            $searchVar = lcfirst( substr( $name, 3 ) );
+            
+            if( array_key_exists($searchVar,$classVars) )
+            {
+                
+                $o = new \ReflectionClass(get_class($this));
+var_dump($o->getProperty($searchVar));
+die;
+                if( $o>getProperty($searchVar)->isPublic() )
+                {
+                    echo 'public'.PHP_EOL;
+                    $o->getProperty($searchVar)->setValue($args);
+                    var_dump($args);
+                    var_dump($o);
+                    return;
+                }
+            }
+            else
+                $this->_getViewOverloadingUnknownMethod( $name,$args );
+            
+        }
+
         $this->_getViewOverloadingUnknownMethod( $name,$args );
+        
     }
     
     public static function __callStatic ( string $name, array $args )
