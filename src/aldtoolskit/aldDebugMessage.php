@@ -224,6 +224,11 @@ class aldDebugMessage {
         echo self::getBacktrace($offset);
     }
     
+    static public function bp()
+    {
+        self::echo( '', ALD_DEBUG_INFO_ON, ALD_DEBUG_STACK_OFF,2 );
+    }
+    
     
     // end class
 }
