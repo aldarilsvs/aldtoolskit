@@ -1,0 +1,11 @@
+{
+    "name" : "aldarilsvs/aldtoolskit",
+    "description" : "my test library",
+    "type" : "library",
+    "license" : "MIT",
+    "autoload" : {
+        "psr-4": {
+            "aldarilsvs\\aldtoolskit\\": "src/"
+        }
+    }
+}
