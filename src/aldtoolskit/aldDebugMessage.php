@@ -229,6 +229,53 @@ class aldDebugMessage {
         self::echo( '', ALD_DEBUG_INFO_ON, ALD_DEBUG_STACK_OFF, 3 );
     }
     
-    
+    static public function STOP()
+    {
+        self::echo( 'STOP', ALD_DEBUG_INFO_ON, ALD_DEBUG_STACK_OFF, 3 );
+        die;
+    }
+
+    static public function getDefinedVars($vars)
+    {
+        
+        foreach( $vars as $key => $subvars )
+        {
+            switch ($key) {
+                case '_GET':
+                case '_PUT':
+                case '_SERVER':
+                case '_FILES':
+                case '_GET':
+                case '_COOKIE':
+                case '_POST':
+                    continue;
+
+                default:
+                    if( is_array($subvars) )
+                    {
+                        echo $key . ':' . PHP_EOL;
+                        self::$_journalObject->writeMessageToJournal( PHP_EOL. $key . ':' );
+                        var_dump($subvars);
+                        self::$_journalObject->writeMessageToJournal( PHP_EOL. var_export($subvars) );
+                    }
+                    elseif( is_object($subvars) )
+                    {
+                        echo $key . ':' . PHP_EOL;
+                        self::$_journalObject->writeMessageToJournal( PHP_EOL. $key . ':' );
+                        echo get_class_methods($subvars) . PHP_EOL;
+                        var_dump($subvars);
+                        self::$_journalObject->writeMessageToJournal( PHP_EOL. var_export($subvars) );
+                    }
+                    else
+                    {
+                        echo $key . ' ' . $subvars . PHP_EOL;
+                        self::$_journalObject->writeMessageToJournal( PHP_EOL . $key . ' ' . $subvars );
+                    }
+                    break;
+            }
+        }
+    }
+
+
     // end class
 }
