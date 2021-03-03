@@ -226,7 +226,7 @@ class aldDebugMessage {
     
     static public function bp()
     {
-        self::echo( '', ALD_DEBUG_INFO_ON, ALD_DEBUG_STACK_OFF,2 );
+        self::echo( '', ALD_DEBUG_INFO_ON, ALD_DEBUG_STACK_OFF, 3 );
     }
     
     
