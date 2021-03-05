@@ -161,7 +161,7 @@ class aldDebugMessage {
                 $msg = '\'' . $msg . '\'';
         }
         
-        if ( $msg )
+        if ( $msg_output )
             $msg_output .= PHP_EOL;
         
         return $msg_output . $msg;
@@ -185,7 +185,7 @@ class aldDebugMessage {
         if( self::isViewDebugStack() || $debugstack )
             self::printBacktrace($offset+1);
         
-        if( self::isAutoWriteJournal() )
+        if( self::isAutoWriteJournal() && self::$_journalObject )
         {
             self::$_journalObject->writeMessageToJournal( PHP_EOL.self::getBacktrace(2) );
         }
@@ -235,7 +235,7 @@ class aldDebugMessage {
         die;
     }
 
-    static public function getDefinedVars($vars)
+    static public function printDefinedVars($vars)
     {
         
         foreach( $vars as $key => $subvars )
@@ -251,25 +251,25 @@ class aldDebugMessage {
                     continue;
 
                 default:
-                    if( is_array($subvars) )
+                    if( is_array($subvars) || is_object($subvars) )
                     {
                         echo $key . ':' . PHP_EOL;
-                        self::$_journalObject->writeMessageToJournal( PHP_EOL. $key . ':' );
                         var_dump($subvars);
-                        self::$_journalObject->writeMessageToJournal( PHP_EOL. var_export($subvars) );
-                    }
-                    elseif( is_object($subvars) )
-                    {
-                        echo $key . ':' . PHP_EOL;
-                        self::$_journalObject->writeMessageToJournal( PHP_EOL. $key . ':' );
-                        echo get_class_methods($subvars) . PHP_EOL;
-                        var_dump($subvars);
-                        self::$_journalObject->writeMessageToJournal( PHP_EOL. var_export($subvars) );
+                        
+                        if( self::isAutoWriteJournal() && self::$_journalObject )
+                        {
+                            self::$_journalObject->writeMessageToJournal( PHP_EOL . $key . ': ' . var_export($subvars, true) );
+                            
+                        }
+                        
                     }
                     else
                     {
                         echo $key . ' ' . $subvars . PHP_EOL;
-                        self::$_journalObject->writeMessageToJournal( PHP_EOL . $key . ' ' . $subvars );
+                        
+                        if( self::isAutoWriteJournal() && self::$_journalObject )
+                            self::$_journalObject->writeMessageToJournal( $key . ' ' . $subvars );
+                        
                     }
                     break;
             }

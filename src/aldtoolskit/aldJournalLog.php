@@ -85,6 +85,7 @@ class aldJournalLog
     
     public function writeMessageToJournal($msg)
     {
+
         if( '' == self::$_instance->getJournalFile() || !self::$_instance->getCanJournalWrite() )
             return false;
         
@@ -96,6 +97,8 @@ class aldJournalLog
             $msg = $head . ' ' . $msg;
         
         $msg .= PHP_EOL;
+        
+        echo __FILE__ . ':' . __LINE__ . ' ' . self::getJournalFile() . ' ' . $msg .  PHP_EOL;
         
         return ( file_put_contents( self::getJournalFile(), $msg, FILE_APPEND ) === false ? false : true );
     }
