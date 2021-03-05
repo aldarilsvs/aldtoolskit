@@ -1,0 +1,11 @@
+<?php
+
+namespace aldarilsvs\aldtoolskit;
+
+/**
+ *
+ * @author aldaril
+ */
+trait aldIniFile {
+    //put your code here
+}
