@@ -248,7 +248,7 @@ class aldDebugMessage {
                 case '_GET':
                 case '_COOKIE':
                 case '_POST':
-                    continue;
+                    break;
 
                 default:
                     if( is_array($subvars) || is_object($subvars) )
