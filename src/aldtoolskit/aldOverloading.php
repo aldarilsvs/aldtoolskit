@@ -67,8 +67,15 @@ trait aldOverloading
         {
             if( strstr($traceArray[$i]['function'], '__' ) )
             {
-                $result['file']     = $traceArray[$i]['file'];
-                $result['line']     = $traceArray[$i]['line'];
+                if( isset($traceArray[$i]['file']) )
+                    $result['file']     = $traceArray[$i]['file'];
+                else
+                    $result['file'] = '';
+                
+                if( isset($traceArray[$i]['line']) )
+                    $result['line']     = $traceArray[$i]['line'];
+                else
+                    $result['line'] = '';
                 
                 if( ($i+1) == $sizeTrace )
                 {

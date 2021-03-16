@@ -7,6 +7,8 @@ namespace aldarilsvs\aldtoolskit;
  * @author aldaril
  */
 trait aldIniFile {
+    
+    use aldArrayContent;
 
     protected $_iniPath;
     protected $_contentIniFile = [];
@@ -40,19 +42,22 @@ trait aldIniFile {
     
     private function getItemIniContent()
     {
-        $result = $this->_contentIniFile;
+
+        $inpargs = (array) func_get_args();
         
-        for( $i = 0; $i < func_num_args(); $i++ ) 
-        {
-            if( isset($result[func_get_arg($i)] ) )
-                $result = $result[func_get_arg($i)];
-            else
-                return null;
-        }
+        array_unshift($inpargs, $this->_contentIniFile);
         
-        return $result;
+        return call_user_func_array( array($this, "getContentItemArray"), $inpargs );
+        
     }
     
+    public function printDumpContentIniFile()
+    {
+        print_r( (array) $this->_contentIniFile);
+        echo PHP_EOL;
+    }
+
+
     protected function readIniFile($pathini='')
     {
         
@@ -61,14 +66,14 @@ trait aldIniFile {
         
         if( !file_exists($pathini) )
         {
-            \aldarilsvs\aldtoolskit\aldDebugMessage::echo('Ini file not found');
+            \aldarilsvs\aldtoolskit\aldDebugMessage::echo('Ini file ' . $pathini . ' not found');
             return false;
         }
         
         $parseIni = new \IniParser($pathini);
         
         $this->_contentIniFile = $parseIni->parse();
-        
+
         return true;
         
     }
